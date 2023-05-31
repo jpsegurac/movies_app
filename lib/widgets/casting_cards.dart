@@ -6,7 +6,7 @@ class CastingCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 0),
+      margin: const EdgeInsets.only(bottom: 0),
       width: double.infinity,
       height: 180,
       color: Colors.red,
@@ -26,7 +26,7 @@ class _CastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       width: 110 ,
       height: 100,
       color: Colors.green,
@@ -43,7 +43,7 @@ class _CastCard extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 5,),
+          const SizedBox(height: 5,),
 
           const Text('actor.name asdfasdfasdf',
             maxLines: 2,

@@ -9,12 +9,12 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final String movie = ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
+    // final String movie = ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _CustomAppbar(),
+          const _CustomAppbar(),
           SliverList(
             delegate: SliverChildListDelegate(
               [
@@ -57,7 +57,7 @@ class _CustomAppbar extends StatelessWidget {
         title: Container(
           width: double.infinity,
           alignment: Alignment.bottomCenter,
-          padding: EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10),
           color: Colors.black12,
           child: const Text(
             'Movie.title', 
@@ -137,7 +137,7 @@ class _Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       
       child: Text('Adipisicing adipisicing tempor officia consequat dolor elit nulla fugiat nulla nulla anim. Ex dolor magna veniam non eiusmod. Eiusmod duis culpa irure enim officia labore nisi adipisicing. Irure nisi reprehenderit non laboris enim voluptate deserunt laboris amet.',
         textAlign: TextAlign.justify,

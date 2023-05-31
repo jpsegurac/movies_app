@@ -8,14 +8,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movies on cinemas"),
+        title: const Text("Movies on cinemas"),
         elevation: 0,
         actions: [
           IconButton(
             onPressed: () {
               
             }, 
-            icon: Icon(Icons.search_outlined)
+            icon: const Icon(Icons.search_outlined)
             )
         ],
       ),
