@@ -8,7 +8,7 @@ class MovieSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 290,
       child: Column(
@@ -35,9 +35,7 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({
-    super.key,
-  });
+  const _MoviePoster();
 
   @override
   Widget build(BuildContext context) {
