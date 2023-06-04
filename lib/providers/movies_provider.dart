@@ -10,11 +10,13 @@ class MoviesProvider extends ChangeNotifier{
   final String _language = 'es-ES';
 
   List<Movie> onDisplayMovies= [];
+  List<Movie> popularMovies = [];
 
 
   MoviesProvider(){
     print('MoviesProvider inicializado');
     this.getOnDisplayMovies();
+    this.getPopularMovies();
   }
 
 
@@ -39,6 +41,34 @@ class MoviesProvider extends ChangeNotifier{
 
       notifyListeners();
     }
+
+  
+
+  }
+
+  getPopularMovies() async{
+    var url = Uri.https(_baseUrl, '3/movie/popular', {
+      'api_key': _apikey,
+      'language': _language,
+      'page': '1',
+    });
+
+    // Await the http get response, then decode the json-formatted response.
+    final response = await http.get(url);
+    PopularResponse.fromJson(response.body);
+    if (response.statusCode != 200 ){
+      return print('Request failed with status: ${response.statusCode}.');
+    }else{
+      final decodedData = PopularResponse.fromJson(response.body);
+      print(decodedData.results[1].title);
+
+
+      popularMovies = [...popularMovies,... decodedData.results];
+      print(popularMovies.length);
+      notifyListeners();
+    }
+
+  
 
   }
 
