@@ -12,7 +12,7 @@ class MoviesProvider extends ChangeNotifier{
   List<Movie> onDisplayMovies= [];
   List<Movie> popularMovies = [];
 
-  int _popularPage = 499;
+  int _popularPage = 0;
 
 
   MoviesProvider(){

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CastingCards extends StatelessWidget {
-  const CastingCards({super.key});
+  const CastingCards({super.key, required this.movieId});
+
+  final int movieId;
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,6 @@ class CastingCards extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 0),
       width: double.infinity,
       height: 180,
-      color: Colors.red,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 10,
@@ -29,7 +30,6 @@ class _CastCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       width: 110 ,
       height: 100,
-      color: Colors.green,
       child: Column(
         children: [
           ClipRRect(
