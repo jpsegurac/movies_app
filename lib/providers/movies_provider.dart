@@ -12,65 +12,51 @@ class MoviesProvider extends ChangeNotifier{
   List<Movie> onDisplayMovies= [];
   List<Movie> popularMovies = [];
 
+  int _popularPage = 0;
+
 
   MoviesProvider(){
-    print('MoviesProvider inicializado');
-    this.getOnDisplayMovies();
-    this.getPopularMovies();
+    getOnDisplayMovies();
+    getPopularMovies();
+  }
+
+  Future<String> _getJsonData(String endpoint, [int page = 1]) async {
+    var url = Uri.https(_baseUrl, endpoint, {
+      'api_key': _apikey,
+      'language': _language,
+      'page': '$page',
+    });
+
+    final response = await http.get(url);
+  
+    return response.body;
+
+        
   }
 
 
   getOnDisplayMovies() async{
-    var url = Uri.https(_baseUrl, '3/movie/now_playing', {
-      'api_key': _apikey,
-      'language': _language,
-      'page': '1',
-    });
+    // Await the http get jsonData, then decode the json-formatted jsonData.
+    final jsonData = await _getJsonData('3/movie/now_playing');
 
-    // Await the http get response, then decode the json-formatted response.
-    final response = await http.get(url);
-    NowPlaying.fromJson(response.body);
-    if (response.statusCode != 200 ){
-      return print('Request failed with status: ${response.statusCode}.');
-    }else{
-      final decodedData = NowPlaying.fromJson(response.body);
-      print(decodedData.results[1].title);
+    final decodedData = NowPlaying.fromJson(jsonData);
 
+    onDisplayMovies = decodedData.results;
 
-      onDisplayMovies = decodedData.results;
-
-      notifyListeners();
-    }
-
-  
+    notifyListeners();   
 
   }
 
   getPopularMovies() async{
-    var url = Uri.https(_baseUrl, '3/movie/popular', {
-      'api_key': _apikey,
-      'language': _language,
-      'page': '1',
-    });
 
-    // Await the http get response, then decode the json-formatted response.
-    final response = await http.get(url);
-    PopularResponse.fromJson(response.body);
-    if (response.statusCode != 200 ){
-      return print('Request failed with status: ${response.statusCode}.');
-    }else{
-      final decodedData = PopularResponse.fromJson(response.body);
-      print(decodedData.results[1].title);
+    _popularPage ++;
+    // Await the http get jsonData, then decode the json-formatted jsonData.
+    final jsonData = await _getJsonData('3/movie/popular', _popularPage );
+    
+    final decodedData = PopularResponse.fromJson(jsonData);
 
-
-      popularMovies = [...popularMovies,... decodedData.results];
-      print(popularMovies.length);
-      notifyListeners();
-    }
-
-  
+    popularMovies = [...popularMovies,... decodedData.results];
+    notifyListeners();     
 
   }
-
-
 }
