@@ -11,8 +11,6 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    print(movie.title);
-
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -37,7 +35,7 @@ class DetailsScreen extends StatelessWidget {
 class _CustomAppbar extends StatelessWidget {
 
 
-  const _CustomAppbar({super.key, required this.movie});
+  const _CustomAppbar({required this.movie});
 
   final Movie movie;
 
@@ -97,7 +95,7 @@ class _PosterAndTitle extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
-              placeholder: AssetImage('assets/images/no-image.jpg'),
+              placeholder: const AssetImage('assets/images/no-image.jpg'),
               image: NetworkImage(movie.fullPosterImg),
               height: 150,
             ),
