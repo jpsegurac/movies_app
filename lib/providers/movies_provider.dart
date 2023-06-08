@@ -117,11 +117,11 @@ class MoviesProvider extends ChangeNotifier{
     debouncer.onValue = (value) async{
 
       // print('temeos valor a buscar: $value');
-      final results = await this.searchMovie(value);
+      final results = await searchMovie(value);
       _suggestionsStreamController.add(results);
     };
 
-    final timer = Timer.periodic(Duration(milliseconds: 300), (_) {
+    final timer = Timer.periodic(const Duration(milliseconds: 300), (_) {
       debouncer.value = searchTerm;
     });
 

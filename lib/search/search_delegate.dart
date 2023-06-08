@@ -51,9 +51,6 @@ class MovieSearchDelegate extends SearchDelegate{
     if(query.isEmpty){
       
     }
-
-    print('hola');
-
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
     moviesProvider.getSuggestionsByQuery(query);
 
